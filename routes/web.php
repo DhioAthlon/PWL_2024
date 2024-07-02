@@ -11,6 +11,7 @@ use App\Http\Controllers\SalesController;
 use App\Http\Controllers\StokController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\fileUploadController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -51,6 +52,8 @@ use Illuminate\Support\Facades\Route;
 
 // Route::resource('m_user', POSController::class);
 
+Route::get('/file-upload', [FileUploadController::class,'fileupload']);
+Route::post('/file-upload', [FileUploadController::class,'prosesfileupload']);
 Route::get('/', [WelcomeController::class, 'index']);
 
 
@@ -132,6 +135,7 @@ Route::post('proses_login', [AuthController::class, 'proses_login'])->name('pros
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('proses_register', [AuthController::class, 'proses_register'])->name('proses_register');
 
+// Grup middleware 'auth' untuk melindungi route admin dan manager
 Route::group(['middleware' => ['auth']], function () {
 
     Route::group(['middleware' => ['cek_login:1']], function () {
