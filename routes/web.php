@@ -132,7 +132,6 @@ Route::post('proses_login', [AuthController::class, 'proses_login'])->name('pros
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('proses_register', [AuthController::class, 'proses_register'])->name('proses_register');
 
-// Grup middleware 'auth' untuk melindungi route admin dan manager
 Route::group(['middleware' => ['auth']], function () {
 
     Route::group(['middleware' => ['cek_login:1']], function () {
